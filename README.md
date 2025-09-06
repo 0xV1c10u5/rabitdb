@@ -42,6 +42,73 @@ In my limited time, I wanted to develop a database for fun. The timeline for thi
 - ???
 - Profit
 
+### Guardrails
+- add core rust testing (cargo test, cargo fmt, cargo fuzz, cargo clippy, cargo miri test, etc) to CI/CD
+- sanitizers: If you enable -Zsanitizer=address (nightly Rust), you can run with AddressSanitizer to catch memory corruption bugs.
+- observability: log crate, env_logger crate, tracing crate
+- use '///' documentation notes for core testing when possible:
+> /// Adds two numbers together.
+/// 
+/// # Examples
+///
+/// ```
+/// use my_crate::add;
+///
+/// assert_eq!(add(2, 3), 5);
+/// ```
+- Incremental delivery & feature flags
+
+Instead of shipping a huge batch of changes at once, ship smaller, isolated features — often behind feature flags.
+
+Rust has Cargo features (for conditional compilation).
+
+You can also implement runtime feature flags (via config/env vars).
+
+Cargo feature example (Cargo.toml):
+
+[features]
+experimental = []
+
+
+Code:
+
+#[cfg(feature = "experimental")]
+pub fn new_algorithm() {
+    // some risky new feature
+}
+
+
+Run with:
+
+cargo run --features experimental
+- Specification & property-driven design
+
+This is about thinking in invariants (rules that must always hold true), and then baking them into your code/tests.
+
+Specification: Write down the rules.
+
+Example: A bank account balance must never go negative.
+
+Property-driven design: Encode rules in types and property tests.
+
+Type-system enforcement:
+
+struct Balance(u32); // cannot be negative by design
+
+
+Property-based test with proptest:
+
+use proptest::prelude::*;
+
+proptest! {
+    #[test]
+    fn balance_never_negative(a in 0u32..1000, b in 0u32..1000) {
+        let result = a.checked_sub(b);
+        // property: subtraction must never produce a negative balance
+        prop_assert!(result.is_some() || a < b);
+    }
+
+
 ### Function Namespace + Taxonomy
 - core
 - storage
