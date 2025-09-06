@@ -21,6 +21,7 @@ In my limited time, I wanted to develop a database for fun. The timeline for thi
 - Define Problem
 - Efficient Save to Disk
 - Basic Queryability
+- C Bindings
 - ???
 - Profit
 
