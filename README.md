@@ -17,6 +17,10 @@ In my limited time, I wanted to develop a database for fun. The timeline for thi
 ### Conceptualization
 - Achieve Modularity through Layers: Each new "Database" is a layer of interaction. When the data is created, it's automatically assigned a layer of interaction.  To clarify further, instead of setting up a manual connection to the DB, instead the connection is established through a config/library similar to IaC. If there is no config file, the library looks for a local application running the db. (If neither are found, return error, or create local datastore)
 
+### **Notes:**
+
+- Might need to separate DB core from library, implement query inside library not core(?)
+
 ### Roadmap
 - Define Problem
 - B+ Tree
