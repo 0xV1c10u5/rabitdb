@@ -23,6 +23,18 @@ In my limited time, I wanted to develop a database for fun. The timeline for thi
 - Efficient Save to Disk
 - Basic Queryability
 - C Bindings
+- Property-Based Testing
+- Stress Testing
+- Edge-Testing
+- Integration Testing
+- E2E Testing
+- Regression Testing
+- Benchmark Testing
+- Serialization Testing
+- Combinatorial Testing
+- Integrity Testing
+- Reliability Testing
+- Transactional Testing
 - ???
 - Profit
 
