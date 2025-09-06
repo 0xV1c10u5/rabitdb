@@ -108,6 +108,10 @@ proptest! {
         prop_assert!(result.is_some() || a < b);
     }
 
+- contract tests: API
+- chaos testing: disaster recovery
+- code coverage tracking: cargo-llvm-cov
+- sec commands: cargo audit, cargo deny
 
 ### Function Namespace + Taxonomy
 - core
